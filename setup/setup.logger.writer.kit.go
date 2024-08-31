@@ -6,10 +6,10 @@ import (
 	"strings"
 	"sync"
 
-	logpkg "github.com/eden/go-kratos-pkg/log"
-	writerpkg "github.com/eden/go-kratos-pkg/writer"
+	logpkg "github.com/eden-quan/go-kratos-pkg/log"
+	writerpkg "github.com/eden-quan/go-kratos-pkg/writer"
 
-	"github.com/eden/go-biz-kit/config/def"
+	"github.com/eden-quan/go-biz-kit/config/def"
 )
 
 // getLoggerFileWriter 文件日志写手柄

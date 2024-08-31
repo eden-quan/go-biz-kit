@@ -11,7 +11,7 @@ import (
 	"github.com/go-kratos/kratos/v2/transport/http"
 	"go.uber.org/fx"
 
-	"github.com/eden/go-biz-kit/config"
+	"github.com/eden-quan/go-biz-kit/config"
 )
 
 // NewApp 通过配置信息提供 Kratos 的 APP 示例，以及对应的 Server (http/grpc), 供后续的实现

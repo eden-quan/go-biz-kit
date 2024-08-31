@@ -3,9 +3,9 @@ package contextutil
 import (
 	"context"
 
-	authpkg "github.com/eden/go-kratos-pkg/auth"
-	contextpkg "github.com/eden/go-kratos-pkg/context"
-	headerpkg "github.com/eden/go-kratos-pkg/header"
+	authpkg "github.com/eden-quan/go-kratos-pkg/auth"
+	contextpkg "github.com/eden-quan/go-kratos-pkg/context"
+	headerpkg "github.com/eden-quan/go-kratos-pkg/header"
 )
 
 // GetTraceID ...

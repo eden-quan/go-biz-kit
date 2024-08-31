@@ -1,17 +1,17 @@
 package servers
 
 import (
-	middlewareutil "github.com/eden/go-biz-kit/middleware"
+	middlewareutil "github.com/eden-quan/go-biz-kit/middleware"
 	"time"
 
 	"github.com/go-kratos/kratos/v2/transport/http"
 
-	apputil "github.com/eden/go-biz-kit/app"
-	"github.com/eden/go-biz-kit/config/def"
-	"github.com/eden/go-biz-kit/injection"
-	setup2 "github.com/eden/go-biz-kit/setup"
+	apputil "github.com/eden-quan/go-biz-kit/app"
+	"github.com/eden-quan/go-biz-kit/config/def"
+	"github.com/eden-quan/go-biz-kit/injection"
+	setup2 "github.com/eden-quan/go-biz-kit/setup"
 
-	apppkg "github.com/eden/go-kratos-pkg/app"
+	apppkg "github.com/eden-quan/go-kratos-pkg/app"
 )
 
 // NewHTTPServer new HTTP server.

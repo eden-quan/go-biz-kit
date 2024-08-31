@@ -7,7 +7,7 @@ import (
 	"github.com/go-kratos/kratos/v2/middleware"
 	"github.com/go-kratos/kratos/v2/transport"
 
-	"github.com/eden/go-biz-kit/setup"
+	"github.com/eden-quan/go-biz-kit/setup"
 )
 
 // SQLActionMiddleware 在执行具体的业务逻辑前触发，他根据上下文信息获取当前请求中是否配置了 SQLAction, 如果能够找到对应的 SQLAction

@@ -11,7 +11,7 @@ import (
 	"go.uber.org/fx"
 	"google.golang.org/grpc"
 
-	clientutil "github.com/eden/go-biz-kit/client"
+	clientutil "github.com/eden-quan/go-biz-kit/client"
 )
 
 // HttpProvider 提供便捷的入口简化用户创建匿名函数来提供 Http 服务

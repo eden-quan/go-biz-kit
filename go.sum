@@ -142,8 +142,8 @@ github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d/go.mod h1:rHwXgn7Jul
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
-github.com/eden/go-kratos-pkg v0.2.4 h1:RS6KmdnbsTs0RLiVAYXXvDzGJBOIL1+webagyLV+Tto=
-github.com/eden/go-kratos-pkg v0.2.4/go.mod h1:9OpF0yqy7FhghzbZhL0TPoecv8XdicWQRoQrj+Sewys=
+github.com/eden-quan/go-kratos-pkg v0.2.4 h1:RS6KmdnbsTs0RLiVAYXXvDzGJBOIL1+webagyLV+Tto=
+github.com/eden-quan/go-kratos-pkg v0.2.4/go.mod h1:9OpF0yqy7FhghzbZhL0TPoecv8XdicWQRoQrj+Sewys=
 go.etcd.io/etcd/api/v3 v3.5.11 h1:B54KwXbWDHyD3XYAwprxNzTe7vlhR69LuBgZnMVvS7E=
 go.etcd.io/etcd/api/v3 v3.5.11/go.mod h1:Ot+o0SWSyT6uHhA56al1oCED0JImsRiU9Dc26+C2a+4=
 go.etcd.io/etcd/client/pkg/v3 v3.5.11 h1:bT2xVspdiCj2910T0V+/KHcVKjkUrCZVtk8J2JF2z1A=

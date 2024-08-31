@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
 
-	errorv1 "github.com/eden/go-biz-kit/common/def"
+	errorv1 "github.com/eden-quan/go-biz-kit/common/def"
 )
 
 var _ = recovery.ErrUnknownRequest

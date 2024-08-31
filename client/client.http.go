@@ -7,7 +7,7 @@ import (
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/transport/http"
 
-	"github.com/eden/go-biz-kit/config/def"
+	"github.com/eden-quan/go-biz-kit/config/def"
 )
 
 func NewHttpClientConn(server *def.Server, logger log.Logger) (*http.Client, error) {

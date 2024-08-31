@@ -3,9 +3,9 @@ package apputil
 import (
 	"strings"
 
-	apppkg "github.com/eden/go-kratos-pkg/app"
+	apppkg "github.com/eden-quan/go-kratos-pkg/app"
 
-	common "github.com/eden/go-biz-kit/common/def"
+	common "github.com/eden-quan/go-biz-kit/common/def"
 )
 
 const (

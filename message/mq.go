@@ -3,7 +3,7 @@ package message
 import (
 	"context"
 
-	"github.com/eden/go-biz-kit/config/def"
+	"github.com/eden-quan/go-biz-kit/config/def"
 )
 
 /*

@@ -1,8 +1,8 @@
-module github.com/eden/go-biz-kit
+module github.com/eden-quan/go-biz-kit
 
 go 1.22
 
-replace 	github.com/eden/go-kratos-pkg v0.2.4 => ../go-kratos-pkg
+replace 	github.com/eden-quan/go-kratos-pkg v0.0.1 => ../go-kratos-pkg
 
 require (
 	github.com/glebarez/go-sqlite v1.22.0
@@ -14,7 +14,7 @@ require (
 	github.com/redis/go-redis/v9 v9.3.1
 	github.com/signalfx/splunk-otel-go/instrumentation/github.com/jmoiron/sqlx/splunksqlx v1.11.0
 	github.com/stretchr/testify v1.8.4
-	github.com/eden/go-kratos-pkg v0.2.4
+	github.com/eden-quan/go-kratos-pkg v0.0.1
 	go.etcd.io/etcd/api/v3 v3.5.11
 	go.etcd.io/etcd/client/v3 v3.5.11
 	go.mongodb.org/mongo-driver v1.13.1

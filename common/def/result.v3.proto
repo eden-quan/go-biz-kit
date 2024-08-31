@@ -4,7 +4,7 @@ package kit.default.configv1;
 
 import "google/protobuf/descriptor.proto";
 
-option go_package = "github.com/eden/go-biz-kit/common/def;def";
+option go_package = "github.com/eden-quan/go-biz-kit/common/def;def";
 
 message Result {
   // code 为本次接口的调用结果，后续将使用统一的 StatusCode 管理所有状态码, 当前版本的 code 将统一从 StatusCode 的 Number 获取

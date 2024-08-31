@@ -7,7 +7,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	"go.mongodb.org/mongo-driver/mongo"
 
-	"github.com/eden/go-biz-kit/message"
+	"github.com/eden-quan/go-biz-kit/message"
 )
 
 type MongoDB interface {

@@ -4,10 +4,10 @@ import (
 	"github.com/go-kratos/kratos/v2/log"
 	"go.mongodb.org/mongo-driver/mongo"
 
-	mongopkg "github.com/eden/go-kratos-pkg/mongo"
+	mongopkg "github.com/eden-quan/go-kratos-pkg/mongo"
 
-	kit "github.com/eden/go-biz-kit"
-	config "github.com/eden/go-biz-kit/config/def"
+	kit "github.com/eden-quan/go-biz-kit"
+	config "github.com/eden-quan/go-biz-kit/config/def"
 )
 
 type mongoDBImpl struct {

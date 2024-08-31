@@ -1,7 +1,7 @@
 package apputil
 
 import (
-	errorv1 "github.com/eden/go-biz-kit/common/def"
+	errorv1 "github.com/eden-quan/go-biz-kit/common/def"
 )
 
 // validator ...

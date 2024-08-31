@@ -9,7 +9,7 @@ import (
 	"github.com/go-kratos/kratos/v2/log"
 	"go.uber.org/fx"
 
-	"github.com/eden/go-biz-kit/config/def"
+	"github.com/eden-quan/go-biz-kit/config/def"
 )
 
 func NewProfile(lifecycle fx.Lifecycle, conf *def.Configuration, logger log.Logger) {

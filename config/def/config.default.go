@@ -1,7 +1,7 @@
 package def
 
 import (
-	"github.com/eden/go-biz-kit/config"
+	"github.com/eden-quan/go-biz-kit/config"
 )
 
 type Configuration struct {

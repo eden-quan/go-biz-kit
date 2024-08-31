@@ -6,8 +6,8 @@ import (
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/redis/go-redis/v9"
 
-	kit "github.com/eden/go-biz-kit"
-	"github.com/eden/go-biz-kit/config/def"
+	kit "github.com/eden-quan/go-biz-kit"
+	"github.com/eden-quan/go-biz-kit/config/def"
 )
 
 type redisImpl struct {

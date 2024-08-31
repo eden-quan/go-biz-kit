@@ -9,7 +9,7 @@ import (
 	"github.com/go-kratos/kratos/v2/transport/grpc"
 	"github.com/go-kratos/kratos/v2/transport/http"
 
-	"github.com/eden/go-biz-kit/config"
+	"github.com/eden-quan/go-biz-kit/config"
 )
 
 var _app *kratos.App = nil

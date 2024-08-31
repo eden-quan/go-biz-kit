@@ -1,18 +1,18 @@
 package servers
 
 import (
-	middlewareutil "github.com/eden/go-biz-kit/middleware"
+	middlewareutil "github.com/eden-quan/go-biz-kit/middleware"
 	"time"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/transport/grpc"
 	grpc2 "google.golang.org/grpc"
 
-	"github.com/eden/go-biz-kit/config/def"
-	"github.com/eden/go-biz-kit/injection"
-	setup2 "github.com/eden/go-biz-kit/setup"
+	"github.com/eden-quan/go-biz-kit/config/def"
+	"github.com/eden-quan/go-biz-kit/injection"
+	setup2 "github.com/eden-quan/go-biz-kit/setup"
 
-	apppkg "github.com/eden/go-kratos-pkg/app"
+	apppkg "github.com/eden-quan/go-kratos-pkg/app"
 )
 
 // NewGRPCServer 创建一个 gRPC 服务端

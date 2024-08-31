@@ -3,9 +3,9 @@ package setup
 import (
 	"github.com/go-kratos/kratos/v2/log"
 
-	"github.com/eden/go-biz-kit/config"
-	"github.com/eden/go-biz-kit/config/def"
-	"github.com/eden/go-biz-kit/tracing"
+	"github.com/eden-quan/go-biz-kit/config"
+	"github.com/eden-quan/go-biz-kit/config/def"
+	"github.com/eden-quan/go-biz-kit/tracing"
 )
 
 // NewTracing 创建链路跟踪

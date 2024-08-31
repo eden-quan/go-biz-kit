@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package kit.default.configv1;
 
-option go_package = "github.com/eden/go-biz-kit/common/def;def";
+option go_package = "github.com/eden-quan/go-biz-kit/common/def;def";
 
 import "errors/errors.proto";
 

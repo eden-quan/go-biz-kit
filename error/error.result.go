@@ -7,12 +7,12 @@ import (
 	"reflect"
 	"sync"
 
+	errorpkg "github.com/eden-quan/go-kratos-pkg/error"
 	"github.com/go-kratos/kratos/v2/middleware"
 	"github.com/go-kratos/kratos/v2/transport"
-	errorpkg "github.com/eden/go-kratos-pkg/error"
 	"go.opentelemetry.io/otel/trace"
 
-	common "github.com/eden/go-biz-kit/common/def"
+	common "github.com/eden-quan/go-biz-kit/common/def"
 )
 
 type TruncateToEmptyErrorInterface interface {

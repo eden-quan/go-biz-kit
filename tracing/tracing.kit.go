@@ -13,8 +13,8 @@ import (
 	"go.opentelemetry.io/otel/sdk/trace/tracetest"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
 
-	"github.com/eden/go-biz-kit/config"
-	"github.com/eden/go-biz-kit/config/def"
+	"github.com/eden-quan/go-biz-kit/config"
+	"github.com/eden-quan/go-biz-kit/config/def"
 )
 
 var lock sync.Once

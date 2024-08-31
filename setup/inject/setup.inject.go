@@ -1,8 +1,8 @@
 package inject
 
 import (
-	"github.com/eden/go-biz-kit/injection"
-	"github.com/eden/go-biz-kit/setup"
+	"github.com/eden-quan/go-biz-kit/injection"
+	"github.com/eden-quan/go-biz-kit/setup"
 )
 
 /*
