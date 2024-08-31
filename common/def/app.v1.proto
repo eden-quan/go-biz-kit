@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package kit.default.configv1;
+
+option go_package = "github.com/eden/go-biz-kit/common/def;def";
+
+
+// App application
+message App {
+  // name app 名字
+  string name = 2;
+  // version app 版本
+  string version = 3;
+  // env app 环境
+  string env = 4;
+}
+
+// Secret ...
+message Secret {
+  // 非对称加密传输,主要用于密码传递等,防止传递过程中明文信息被log,导致泄露
+  message TransferEncrypt {
+    string public_key = 1;
+    string private_key = 2;
+  }
+  // 非对称加密传输,主要用于服务请求鉴权,服务间的鉴权
+  message ServiceEncrypt {
+    string public_key = 1;
+    string private_key = 2;
+  }
+
+  message TokenEncrypt {
+    string key = 1;
+  }
+  message RefreshEncrypt {
+    string key = 1;
+  }
+
+  TransferEncrypt transfer_encrypt = 1;
+  ServiceEncrypt service_encrypt = 2;
+  TokenEncrypt jwt_encrypt = 3;
+  RefreshEncrypt refresh_encrypt = 4;
+}

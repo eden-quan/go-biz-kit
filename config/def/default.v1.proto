@@ -1,0 +1,211 @@
+syntax = "proto3";
+
+package kit.default.configv1;
+
+option go_package = "github.com/eden/go-biz-kit/config/def;def";
+
+import "google/protobuf/duration.proto";
+
+// Server 服务
+message Server {
+  // http http服务配置
+  Registry http = 1;
+  // grpc grpc服务配置
+  Registry grpc = 2;
+}
+
+message Tracing {
+  bool enable = 1;          // 是否启用链路跟踪
+  string endpoint = 2;      // 链路跟踪的 collector 服务地址, 默认为 127.0.0.1:4318
+  string url_path = 3;      // 链路跟踪接口 collector 接口路径 , 默认为 /api/traces
+  double simple_rate = 4;   // 日志采样比例
+  string type = 5;          // 链路跟踪类型，不启用时使用 memory, 启用时为 jaeger
+  int32 max_batch_size = 6; // 最大的批量提交数
+  int32 max_queue_size = 7; // 最大的缓存队列大小
+}
+
+message Registry {
+  bool enable = 6;     // 是否启用该 Service
+  string name = 1;     // 服务名
+  string version = 2;  // 服务版本
+  google.protobuf.Duration timeout = 3; // 该服务的超时时间
+  string address = 4;        // 服务地址 - 一般为域名，服务发现能力由运维环境提供，如果需要私有化部署可配置为服务 IP
+  string type = 5; // 服务类型, grpc/http
+}
+
+
+message Data {
+  Database database = 1;
+  Redis redis = 2;
+  Mongo mongodb = 3;
+  RabbitMQ rabbitMq = 4;
+}
+
+message RabbitMQ {
+  string addresses = 1;   // 服务的连接地址
+  string vhost = 2;       // 虚拟主机名，后期可用于做隔离
+  int32 retry = 3;        // 连接的重试次数
+  string client_name = 4; // 客户端标识符
+  google.protobuf.Duration heartbeat = 5;  // 连接心跳检测间隔
+}
+
+message ExchangeConfig {
+  string name = 1;      // 交换机名称
+  string kind = 2;      // 交换机类型，direct/fanout/topic/header , 一般只需要用到前三者
+  bool durable = 3;     // 交换机是否持久化, 持久化的交换机在重启后不会丢失
+  bool auto_delete = 4; // 交换机的是否会在消费后自动删除, 设置为 false 的话能够更好的保存数据，并在全局层面进行管理
+}
+
+message QueueConfig {
+  string name = 1;          // 消息名称
+  string exchange_name = 2; // 使用的交换机名称, 一般可保持与消息名一致
+  bool durable = 3;         // 队列是否持久化，持久化的队列在重启后不会消失
+  bool auto_delete = 4;     // 队列的是否会在消费后自动删除, 设置为 false 的话能够更好的保存数据，并在全局层面进行管理
+  string routing_key = 5;   // 队列的路由字段，通过该字段与交换机建立绑定，后续交换机收到消息时会将消息送给匹配路由的队列
+}
+
+message ConsumeConfig {
+  string name = 1;   // 消费者的名称
+  bool auto_ack = 2; // 是否自动提交 ACK
+  bool no_wait = 3;  // 是否不等待连接完成, 一般设置为 false
+  int32 qos_prefetch_size = 4;     // 允许缓冲在内存的消息数，默认为 0, 只有在存在大量消息需要消费时使用，用于提高吞吐量
+  int32 qos_prefetch_count = 5;    // 允许缓冲在内存的字节数，默认为 0，一般不做配置
+}
+
+// Log 日志
+message Log {
+  enum LogLevelEnum {
+    LOG_LEVEL_UNSPECIFIED = 0;
+    DEBUG = 1;
+    INFO = 2;
+    WARN = 3;
+    ERROR = 4;
+    FATAL = 5;
+  }
+
+  // Console 输出到控制台
+  message Console {
+    // enable 是否启用
+    bool enable = 1;
+    string level = 2;
+    bool use_json_encoder = 3;
+  }
+  // Graylog ...
+  message Graylog {
+    bool enable = 1;
+    string level = 2;
+    string proto = 3;
+    string addr = 4;
+    string facility = 5;
+    int32 async_pool_size = 6;
+  }
+
+  // File 输出到文件
+  message File {
+    // enable 是否启用
+    bool enable = 1;
+    string level = 2;
+
+    // dir 存储目录
+    string dir = 3;
+    // filename 文件名(默认：${filename}_app.%Y%m%d%H%M%S.log)
+    string filename = 4;
+
+    // rotate_time 轮询规则：n久(默认：86400s # 86400s = 1天)
+    // 轮询规则：默认为：rotate_time
+    google.protobuf.Duration rotate_time = 5;
+    // rotate_size 轮询规则：按文件大小(默认：52428800 # 50<<20 = 50M)
+    // 轮询规则：默认为：rotate_time
+    int64 rotate_size = 6;
+
+    // storage_age 存储n久(默认：2592000s = 30天)
+    // 存储规则：默认为：storage_age
+    google.protobuf.Duration storage_age = 8;
+    // storage_counter 存储：n个 或 有效期storage_age(默认：2592000s = 30天)
+    // 存储规则：默认为：storage_age
+    uint32 storage_counter = 7;
+  }
+
+  // Console 输出到控制台
+  Console console = 1;
+  // Graylog 输出到文件
+  Graylog graylog = 2;
+  // File 输出到文件
+  File file = 3;
+}
+
+
+
+message Redis {
+  bool enable = 111;
+  repeated string addresses = 1; // Redis 节点地址
+  int32 db = 2;                  // 使用的数据库
+  string username = 3;           // 用户名
+  string password = 4;           // 密码
+  google.protobuf.Duration read_timeout = 5;    // 读取超时时间
+  google.protobuf.Duration write_timeout = 6;   // 写入超时时间
+  google.protobuf.Duration dial_timeout = 7;    // 连接超时时间
+  uint64 max_pool_size = 8; // 最大的连接池数
+  uint64 max_pool_idle_size = 9;   // 最大连接数
+  uint64 min_pool_idle_size = 10;   // 最小空闲链接
+  uint64 max_retries = 11;         // 最大重试次数
+}
+
+message Mongo {
+  bool enable = 14;
+  string address = 2; // MongoDB 的连接字符串，支持集群的形式
+  repeated string hosts = 3; // MongoDB 的集群地址列表
+  string database = 4; // 数据库名称
+  uint64 max_pool_size = 5; // 最大空闲连接
+  uint64 min_pool_size = 6; // 最小空闲连接
+  uint64 max_connection = 7;     // 最大连接数
+  google.protobuf.Duration connect_timeout = 8;    // 连接超时时间
+  google.protobuf.Duration heartbeat_interval = 9; // 心跳间隔
+  google.protobuf.Duration max_conn_idle_time = 10;
+  google.protobuf.Duration timeout = 11;
+  bool debug = 12; // 是否开启调试模式
+}
+
+
+message Database {
+  bool enable = 9;
+  string driver = 10; // 数据库的驱动，用于支持不同的数据库引擎, 如 mysql/sqlite/pgx
+  string addr = 1; // 数据库链接地址, 包含了地址/用户名/密码及数据库
+  string database = 2;
+  uint64 max_pool_idle_size = 4; // 最大空闲连接
+  uint64 max_connection = 6;     // 最大连接数
+  google.protobuf.Duration conn_max_lifetime = 7;
+  google.protobuf.Duration conn_max_idle_time = 8;
+}
+
+message Profile {
+  bool enable_cpu = 1; // 是否启用 CPU Profile
+  bool enable_mem = 2; // 是否启用 Mem Profile
+  string cpu_file = 3; // CPU Profile 文件的保存地址
+  string mem_file = 4; // MEM Profile 文件的保存地址
+}
+
+
+//// Log 将多种日志配置进行整合，业务端无需过多关注日志系统的细节，
+//// 具体的实现由业务模块决定
+//message Log {
+//  enum LogLevelEnum {
+//    LOG_LEVEL_UNSPECIFIED = 0;
+//    DEBUG = 1;
+//    INFO = 2;
+//    WARN = 3;
+//    ERROR = 4;
+//    FATAL = 5;
+//  }
+//
+//  bool enable = 10;     // 是否开启日志
+//  LogLevelEnum level = 1; // 日志级别
+//  string host = 2; // 日志采集服务的地址，一般无需使用，仅在本地开发时使用该选项
+//  int32 port = 3;  // 日志采集服务的端口, 一般无需使用，仅在本地开发时使用该选项
+//  string local_file = 4; // 该选项用于定义本地日志缓存的路径，通常无需配置该选项
+//  int64 max_size = 5;    // 该选项用于定义本地日志文件的大小，通常无需配置该选项
+//  int32 max_backup = 6;  // 定义本地日志文件的备份数，通常无需配置该选项
+//  int32 max_age = 7;     // 定义本地日志文件最长保留时间 (天)，通常无需配置该选项
+//  bool async = 8; // 日志是否已异步的方式写入
+//  int32 cache_size = 9; // 内存中缓存日志的大小，用于避免日志系统堵导致系统堵塞
+//}

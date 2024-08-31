@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package kit.default.configv1;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/eden/go-biz-kit/common/def;def";
+
+message Result {
+  // code 为本次接口的调用结果，后续将使用统一的 StatusCode 管理所有状态码, 当前版本的 code 将统一从 StatusCode 的 Number 获取
+  int32 code      = 9001;
+  string reason   = 9002;        // reason 为 code 对应的英文编码，可用于快速定位问题
+  string message  = 9003;        // message 为接口调用出错时的具体错误信息
+  string identity = 9004;        // identity 为本次调用的通用结果，如某些接口调用后只需返回一个 Id 或标识符，则可使用该字段携带信息
+  string trace_id = 9005;        // trace_id 为本次调用的链路 Id，可用于整合所有本次调用相关的线索
+  string error_chain = 9006;     // error_chain 如果错误经过了多层业务的封装，则可以从该字段得到每一层的错误信息
+  map<string, string> meta_data = 9007; // meta_data 为附加的元数据，可用于在发生错误时提供更详细的信息
+}
