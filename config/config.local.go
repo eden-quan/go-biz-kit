@@ -19,6 +19,8 @@ type LocalConfigure struct {
 	APP APPConfig `json:"app"` // APP 基本配置
 	// ConfigureCenter 配置中心的地址
 	ConfigCenter struct {
+		// 本地配置文件，如果配置了则不使用配置中心，而是使用本地的配置文件
+		LocalFile string   `json:"local_file"`
 		Endpoints []string `json:"endpoints"`
 		Username  string   `json:"username"`
 		Password  string   `json:"password"`

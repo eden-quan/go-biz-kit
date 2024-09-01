@@ -3,11 +3,10 @@ package config
 import (
 	"errors"
 	"fmt"
+	"github.com/eden-quan/go-biz-kit/encoding/json"
 	"reflect"
 	"strings"
 	"unicode"
-
-	"github.com/eden-quan/go-biz-kit/encoding/json"
 )
 
 const (

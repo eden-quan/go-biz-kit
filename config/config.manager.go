@@ -12,6 +12,7 @@ import (
 )
 
 type Manager struct {
+	LocalFile   string
 	Client      *etcd.Client
 	Instances   []*managerInstance
 	TraceInfo   traceInfo
@@ -27,25 +28,30 @@ func NewConfigWatcher(configure *LocalConfigure) (ConfigureWatcherRepo, error) {
 		return nil, err
 	}
 
-	client, err := etcd.New(etcd.Config{
-		Endpoints:   configure.ConfigCenter.Endpoints,
-		Username:    configure.ConfigCenter.Username,
-		Password:    configure.ConfigCenter.Password,
-		DialTimeout: timeOut,
-	})
-
-	if err != nil {
-		panic(fmt.Sprint("connect to etcd failed with error", err))
-		return nil, err
-	}
-
 	e := Manager{
+		LocalFile:   configure.ConfigCenter.LocalFile,
 		Instances:   make([]*managerInstance, 0),
-		Client:      client,
+		Client:      nil,
 		PathHistory: make(map[string]*pathPriorityHistory),
 	}
 
-	e.AddPrefix("", 0, false) // 添加默认监听器
+	// 没有配置本地文件时才会监听 ETCD
+	if configure.ConfigCenter.LocalFile == "" {
+		client, err := etcd.New(etcd.Config{
+			Endpoints:   configure.ConfigCenter.Endpoints,
+			Username:    configure.ConfigCenter.Username,
+			Password:    configure.ConfigCenter.Password,
+			DialTimeout: timeOut,
+		})
+
+		if err != nil {
+			panic(fmt.Sprint("connect to etcd failed with error", err))
+			return nil, err
+		}
+
+		e.Client = client
+		e.AddPrefix("", 0, false) // 添加默认监听器
+	}
 
 	return &e, nil
 }
@@ -89,7 +95,10 @@ func (c *Manager) AddPrefix(prefix string, priority int, ignoreEmpty bool) {
 	c.Instances = append(c.Instances, ins)
 }
 
+// Load 解析 object 中的地址信息，如果是本地配置文件，则直接读取本地配置文件填充到 object
 func (c *Manager) Load(object interface{}) error {
+	// TODO: 实现本地配置文件
+
 	fakeRoot := newTraceObject(nil)
 	err := c.TraceInfo.analyseObj(reflect.ValueOf(object), fakeRoot)
 
@@ -141,8 +150,9 @@ func (c *Manager) LoadWithPath(object interface{}, path string) error {
 	return nil
 }
 
+// Start 启动对配置中心的监听，如果使用的是本地的文件，则启动本地文件监听，
+// TODO: 暂时未实现本地文件监听
 func (c *Manager) Start() error {
-
 	if c.TraceInfo.service != nil {
 		// 统一 service 前缀为 /service/{service_name}
 		prefix := "/service/" + c.TraceInfo.service.path

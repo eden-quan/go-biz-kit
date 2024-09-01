@@ -47,6 +47,7 @@ message RabbitMQ {
   int32 retry = 3;        // 连接的重试次数
   string client_name = 4; // 客户端标识符
   google.protobuf.Duration heartbeat = 5;  // 连接心跳检测间隔
+  bool enable = 6; // 是否启用 MQ 功能
 }
 
 message ExchangeConfig {

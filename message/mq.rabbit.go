@@ -31,6 +31,11 @@ func (c *connProxy) Get() *amqp.Connection {
 // NewQueueFactory 创建一个消息队列的管理器，用于创建消费者及生产者,
 // logger 提供日志记录能力， conf 为配置中心
 func NewQueueFactory(logger log.Logger, conf *def.Configuration, local *config.LocalConfigure) (QueueFactory, error) {
+
+	if !conf.MessageQueue.Enable {
+		return nil, nil
+	}
+
 	f := &factoryImpl{
 		logger:   log.With(logger, "mq", "rabbitmq"),
 		exitChan: make(chan bool),
