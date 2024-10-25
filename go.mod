@@ -2,7 +2,6 @@ module gitlab.lainuoniao.cn/eden-quan/go-biz-kit
 
 go 1.22
 
-replace gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg v0.0.1 => ../go-kratos-pkg
 
 require (
 	github.com/bwmarrin/snowflake v0.3.0
@@ -16,7 +15,7 @@ require (
 	github.com/rs/xid v1.5.0
 	github.com/signalfx/splunk-otel-go/instrumentation/github.com/jmoiron/sqlx/splunksqlx v1.11.0
 	github.com/stretchr/testify v1.8.4
-	gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg v0.0.1
+	gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg v0.0.2
 	go.etcd.io/etcd/api/v3 v3.5.11
 	go.etcd.io/etcd/client/v3 v3.5.11
 	go.mongodb.org/mongo-driver v1.17.1
