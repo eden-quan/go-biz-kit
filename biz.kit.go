@@ -12,6 +12,7 @@ import (
 
 type MongoDB interface {
 	Get() *mongo.Database
+	GetDB(name string) *mongo.Database
 }
 
 type WithTxFunc = func(ctx context.Context, tx Transaction) error

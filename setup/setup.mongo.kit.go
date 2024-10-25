@@ -11,17 +11,22 @@ import (
 )
 
 type mongoDBImpl struct {
-	db *mongo.Database
+	client *mongo.Client
+	db     *mongo.Database
 }
 
-func newMongoDB(db *mongo.Database) kit.MongoDB {
+func newMongoDB(db *mongo.Database, client *mongo.Client) kit.MongoDB {
 	return &mongoDBImpl{
-		db: db,
+		client: client,
+		db:     db,
 	}
 }
 
 func (db *mongoDBImpl) Get() *mongo.Database {
 	return db.db
+}
+func (db *mongoDBImpl) GetDB(name string) *mongo.Database {
+	return db.client.Database(name)
 }
 
 // NewMongoDB 创建 MongoDB 客户端 mongo database
@@ -48,5 +53,5 @@ func NewMongoDB(conf *config.Configuration, logger log.Logger) (kit.MongoDB, err
 	client := mongopkg.NewMongoClient(c, logger)
 
 	db := client.Database(mongoConfig.Database)
-	return newMongoDB(db), nil
+	return newMongoDB(db, client), nil
 }

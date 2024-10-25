@@ -16,3 +16,8 @@ message Result {
   string error_chain = 9006;     // error_chain 如果错误经过了多层业务的封装，则可以从该字段得到每一层的错误信息
   map<string, string> meta_data = 9007; // meta_data 为附加的元数据，可用于在发生错误时提供更详细的信息
 }
+
+message SimpleResult {
+  int32 code = 9001;     // code 为错误码
+  string message = 9002; // message 为错误消息
+}

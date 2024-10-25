@@ -7,9 +7,9 @@ import (
 	"reflect"
 	"sync"
 
-	errorpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/error"
 	"github.com/go-kratos/kratos/v2/middleware"
 	"github.com/go-kratos/kratos/v2/transport"
+	errorpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/error"
 	"go.opentelemetry.io/otel/trace"
 
 	common "gitlab.lainuoniao.cn/eden-quan/go-biz-kit/common/def"
@@ -47,9 +47,9 @@ func ErrorResultMiddleware() middleware.Middleware {
 			}
 
 			reply, err = handler(ctx, req)
-			if reply == nil {
-				return
-			}
+			//if reply == nil {
+			//	return
+			//}
 
 			if errorpkg.IsEmptyError(err) {
 				err = nil
@@ -60,68 +60,72 @@ func ErrorResultMiddleware() middleware.Middleware {
 			data := &common.Result{TraceId: span.SpanContext().TraceID().String()}
 
 			// check if it has the flatten field of result
-			processed := matchAndUpdate(reply, err, data)
+			processed, result := matchAndUpdate(reply, err, data)
 			if processed {
 				err = &TruncateToEmptyError{error: err}
 			}
 
+			reply = result
 			return
 		}
 	}
 }
 
 type resultTypeChecker struct {
-	resultType *common.Result
+	//resultType *common.Result
+	resultType interface{}
 	fieldCount int
 	fieldList  []string
 	fieldMap   map[string]*reflect.StructField
 }
 
-var checker resultTypeChecker
+var checkers []*resultTypeChecker = []*resultTypeChecker{}
 var checkerOnce sync.Once
 
 func initChecker() {
-	checker.resultType = &common.Result{}
-	checker.fieldMap = make(map[string]*reflect.StructField)
 
-	value := reflect.ValueOf(checker.resultType)
-	valueType := value.Elem().Type()
-	checker.fieldCount = valueType.NumField()
-	for i := 0; i < valueType.NumField(); i++ {
-		f := valueType.Field(i)
+	initWithType := func(resultType interface{}) {
+		checker := &resultTypeChecker{}
+		checker.resultType = resultType
+		checker.fieldMap = make(map[string]*reflect.StructField)
 
-		if !f.IsExported() {
-			continue
+		value := reflect.ValueOf(checker.resultType)
+		valueType := value.Elem().Type()
+		checker.fieldCount = valueType.NumField()
+		for i := 0; i < valueType.NumField(); i++ {
+			f := valueType.Field(i)
+
+			if !f.IsExported() {
+				continue
+			}
+
+			checker.fieldList = append(checker.fieldList, f.Name)
+			checker.fieldMap[f.Name] = &f
 		}
 
-		checker.fieldList = append(checker.fieldList, f.Name)
-		checker.fieldMap[f.Name] = &f
+		checkers = append(checkers, checker)
 	}
+
+	initWithType(&common.SimpleResult{})
+	initWithType(&common.Result{})
+
 }
 
-// matchAndUpdate 处理错误信息后返回该错误是否已被处理
-func matchAndUpdate(v interface{}, err error, data *common.Result) (processed bool) {
-	processed = false
-	checkerOnce.Do(initChecker)
-
-	value := reflect.ValueOf(v)
-	if value.IsNil() {
-		return
-	}
-
-	valueType := value.Elem().Type()
+func matchAndUpdateForType(checker *resultTypeChecker, result interface{}, value reflect.Value, valueType reflect.Type, err error,
+	data *common.Result) bool {
 
 	if valueType.NumField() < checker.fieldCount {
-		return
+		return false
 	}
 
 	for k, v := range checker.fieldMap {
 		f, ok := valueType.FieldByName(k)
 		if !ok || f.Type.Name() != v.Type.Name() {
-			return
+			return false
 		}
 	}
 
+	processed := false
 	if errInfo, e := errorpkg.NewErrorMetaInfo(err); e == nil && errInfo.Leaf() != nil {
 		meta := errInfo.Leaf()
 		data.Code = meta.BizCode
@@ -150,5 +154,36 @@ func matchAndUpdate(v interface{}, err error, data *common.Result) (processed bo
 		}
 	}
 
+	return processed
+
+}
+
+// matchAndUpdate 处理错误信息后返回该错误是否已被处理
+func matchAndUpdate(reply interface{}, err error, data *common.Result) (processed bool, result interface{}) {
+	processed = false
+	checkerOnce.Do(initChecker)
+
+	value := reflect.ValueOf(reply)
+	if value.IsNil() {
+		// 尝试构建一个默认值，确认是否符合基础字段
+		t := reflect.TypeOf(reply)
+		if t.Kind() == reflect.Pointer {
+			t = t.Elem()
+		}
+		nV := reflect.New(t).Elem()
+		reply = nV.Addr().Interface()
+		value = reflect.ValueOf(reply)
+	}
+
+	valueType := value.Elem().Type()
+
+	for _, checker := range checkers {
+		if matchAndUpdateForType(checker, reply, value, valueType, err, data) {
+			processed = true
+			break
+		}
+	}
+
+	result = reply
 	return
 }
