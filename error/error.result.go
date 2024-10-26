@@ -131,6 +131,12 @@ func matchAndUpdateForType(checker *resultTypeChecker, result interface{}, value
 		data.Code = meta.BizCode
 		data.Reason = meta.Reason
 		data.Message = meta.Message
+		if data.Message == "" {
+			data.Message = errInfo.Error()
+		}
+		if data.Message == "" {
+			data.Message = meta.Reason
+		}
 		data.ErrorChain = errInfo.ErrorStack()
 		data.MetaData = maps.Clone(meta.CleanError().Metadata)
 		processed = true
