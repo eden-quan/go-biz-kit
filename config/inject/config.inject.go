@@ -1,8 +1,8 @@
 package inject
 
 import (
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config"
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/injection"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/injection"
 )
 
 /*

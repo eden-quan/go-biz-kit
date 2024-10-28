@@ -3,9 +3,9 @@ package contextutil
 import (
 	"context"
 
-	authpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/auth"
-	contextpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/context"
-	headerpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/header"
+	authpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/auth"
+	contextpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/context"
+	headerpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/header"
 )
 
 // GetTraceID ...

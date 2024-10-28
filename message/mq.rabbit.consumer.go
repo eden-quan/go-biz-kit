@@ -9,7 +9,7 @@ import (
 	"github.com/go-kratos/kratos/v2/log"
 	amqp "github.com/rabbitmq/amqp091-go"
 
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config"
 )
 
 type consumer struct {

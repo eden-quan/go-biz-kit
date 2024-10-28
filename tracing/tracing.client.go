@@ -4,7 +4,7 @@ import (
 	"context"
 	"strings"
 
-	errorpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/error"
+	errorpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/error"
 	"github.com/go-kratos/kratos/v2/middleware"
 	"github.com/go-kratos/kratos/v2/transport"
 	"go.opentelemetry.io/otel/trace"

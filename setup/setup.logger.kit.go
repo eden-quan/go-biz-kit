@@ -10,13 +10,13 @@ import (
 	"github.com/go-kratos/kratos/v2/transport"
 	"go.opentelemetry.io/otel/trace"
 
-	contextpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/context"
-	headerpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/header"
-	ippkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/ip"
-	logpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/log"
+	contextpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/context"
+	headerpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/header"
+	ippkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/ip"
+	logpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/log"
 
-	config2 "gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config"
-	config "gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config/def"
+	config2 "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config"
+	config "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config/def"
 )
 
 // LoggerPrefixField with logger fields.

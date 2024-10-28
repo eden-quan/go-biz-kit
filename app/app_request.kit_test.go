@@ -6,7 +6,7 @@ import (
 	"github.com/go-kratos/kratos/v2/encoding"
 	"github.com/stretchr/testify/require"
 
-	headerpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/header"
+	headerpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/header"
 )
 
 // go test -v -count=1 ./app -test.run=TestRequest_Codec

@@ -8,7 +8,7 @@ import (
 	kgrpc "github.com/go-kratos/kratos/v2/transport/grpc"
 	"google.golang.org/grpc"
 
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config/def"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config/def"
 )
 
 // GrpcClientConn 是对 grpc.ClientConn 的简易封装，用于后续实现热更新等能力

@@ -3,7 +3,7 @@ package message
 import (
 	"context"
 
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config/def"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config/def"
 )
 
 /*

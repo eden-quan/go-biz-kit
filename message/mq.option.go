@@ -5,8 +5,8 @@ import (
 
 	amqp "github.com/rabbitmq/amqp091-go"
 
-	headerpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/header"
-	uuidpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/uuid"
+	headerpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/header"
+	uuidpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/uuid"
 )
 
 type defaultOpt struct {

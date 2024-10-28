@@ -8,9 +8,9 @@ import (
 
 	"github.com/signalfx/splunk-otel-go/instrumentation/github.com/jmoiron/sqlx/splunksqlx"
 
-	kit "gitlab.lainuoniao.cn/eden-quan/go-biz-kit"
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config/def"
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/database"
+	kit "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config/def"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/database"
 )
 
 // NewMySQLDatabase 创建 MySQL 客户端

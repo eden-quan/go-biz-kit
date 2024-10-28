@@ -3,7 +3,7 @@ package config
 import (
 	"errors"
 	"fmt"
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/encoding/json"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/encoding/json"
 	"reflect"
 	"strings"
 	"unicode"

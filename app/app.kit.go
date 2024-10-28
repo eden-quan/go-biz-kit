@@ -3,9 +3,9 @@ package apputil
 import (
 	"strings"
 
-	apppkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/app"
+	apppkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/app"
 
-	common "gitlab.lainuoniao.cn/eden-quan/go-biz-kit/common/def"
+	common "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/common/def"
 )
 
 const (

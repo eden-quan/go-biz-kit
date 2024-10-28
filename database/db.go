@@ -7,8 +7,8 @@ import (
 
 	"github.com/jmoiron/sqlx"
 
-	kit "gitlab.lainuoniao.cn/eden-quan/go-biz-kit"
-	errorutil "gitlab.lainuoniao.cn/eden-quan/go-biz-kit/error"
+	kit "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git"
+	errorutil "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/error"
 )
 
 const DBContextKey = "eden.db.ctx.key"

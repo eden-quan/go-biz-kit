@@ -8,8 +8,8 @@ import (
 	"github.com/go-kratos/kratos/v2/transport/http"
 	"google.golang.org/grpc"
 
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config"
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config/def"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config/def"
 )
 
 func RegisterHTTPClient(nameAndType []string, repo config.ConfigureWatcherRepo, logger log.Logger) (*http.Client, error) {

@@ -1,7 +1,6 @@
-module gitlab.lainuoniao.cn/eden-quan/go-biz-kit
+module gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git
 
 go 1.22
-
 
 require (
 	github.com/bwmarrin/snowflake v0.3.0
@@ -15,7 +14,7 @@ require (
 	github.com/rs/xid v1.5.0
 	github.com/signalfx/splunk-otel-go/instrumentation/github.com/jmoiron/sqlx/splunksqlx v1.11.0
 	github.com/stretchr/testify v1.8.4
-	gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg v0.0.2
+	gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git v0.0.4
 	go.etcd.io/etcd/api/v3 v3.5.11
 	go.etcd.io/etcd/client/v3 v3.5.11
 	go.mongodb.org/mongo-driver v1.17.1

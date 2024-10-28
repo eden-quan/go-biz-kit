@@ -9,7 +9,7 @@ import (
 	"github.com/go-kratos/kratos/v2/log"
 	amqp "github.com/rabbitmq/amqp091-go"
 
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config"
 )
 
 // Producer 为已与指定 Topic 绑定的生产者, Push 会根据 Topic 的配置来触发不同的行为，
