@@ -1,18 +1,10 @@
-package utils
+package regex
 
 import (
-	"github.com/bwmarrin/snowflake"
 	"math/rand"
 	"sync"
 	"time"
 )
-
-func NewSnowflakeID() int64 {
-	node, _ := snowflake.NewNode(1)
-	// Generate a snowflake ID.
-	id := node.Generate().Int64()
-	return id
-}
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
