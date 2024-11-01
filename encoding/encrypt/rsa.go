@@ -24,13 +24,26 @@ func NewRsaTool(logger log.Logger, privateKeyFile string) *RsaTool {
 	}
 }
 
+func (r *RsaTool) ValidateHash(psw string, hashed string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hashed), []byte(psw))
+	return err == nil
+	//return BcryptValidatePassword(psw, hashed)
+}
+
 func (r *RsaTool) GenerateHash(pwd string) (string, error) {
-	// TODO: 实现 Crypto::GenerateHash
+	// DONE: 实现 Crypto::GenerateHash
+	//generated := BcryptGenerateHash(pwd)
+	//return generated, nil
 	generated, err := bcrypt.GenerateFromPassword([]byte(pwd), 4)
 	return string(generated), err
 }
 
-// GeneratePassword 检验旧的已经加密过后的 password 同时生成新的 Hash, 返回原始的 Password, 新的 Password, 及是否出错
+// GeneratePassword 检验旧的已经加密过后的 password 同时生成新的 Hash, 返回原始的 Password, 新的 Password Hash, 以及是否出错
+// 具体步骤为：
+//
+// 1. 对传递的密码进行 Base64 Decode;
+// 2. 通过私钥进行解密得到密码明文
+// 3，通过 BCrypt 生成密码的 Hash (一般服务器只存储 Hash)
 func (r *RsaTool) GeneratePassword(password string) (string, string, error) {
 	originPwd, err := r.DecryptPassword(password)
 	if err != nil {
