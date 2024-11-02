@@ -159,14 +159,24 @@ func (c *Manager) Start() error {
 		c.AddPrefix(prefix, 1, true)
 	}
 
-	var errs []error
+	// 如果一个配置在上一个 instance 找不到，但是在后续的 instance 中找到了，则说明该路径已正常配置
+	errorMap := make(map[string]error)
+
 	for _, path := range c.WatchPath {
 		for _, ins := range c.Instances {
 			err := ins.addPath(path)
-			if err != nil {
-				errs = append(errs, err)
+			if err == nil {
+				delete(errorMap, path)
+				continue
+			} else {
+				errorMap[path] = err
 			}
 		}
+	}
+
+	var errs []error
+	for _, value := range errorMap {
+		errs = append(errs, value)
 	}
 
 	return errors.Join(errs...)
