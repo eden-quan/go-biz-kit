@@ -9,7 +9,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	"github.com/jmoiron/sqlx/reflectx"
 
-	bizkit "gitlab.lainuoniao.cn/eden-quan/go-biz-kit"
+	bizkit "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git"
 )
 
 // transImpl 实现了 kit.Transaction 的接口，提供了数据库事务的创建/提交等操作

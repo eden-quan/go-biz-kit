@@ -9,7 +9,7 @@ import (
 	"github.com/go-kratos/kratos/v2/transport/grpc"
 	"github.com/go-kratos/kratos/v2/transport/http"
 
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config"
 )
 
 var _app *kratos.App = nil

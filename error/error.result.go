@@ -9,10 +9,10 @@ import (
 
 	"github.com/go-kratos/kratos/v2/middleware"
 	"github.com/go-kratos/kratos/v2/transport"
-	errorpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/error"
+	errorpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/error"
 	"go.opentelemetry.io/otel/trace"
 
-	common "gitlab.lainuoniao.cn/eden-quan/go-biz-kit/common/def"
+	common "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/common/def"
 )
 
 type TruncateToEmptyErrorInterface interface {

@@ -3,10 +3,10 @@ package setup
 import (
 	"github.com/go-kratos/kratos/v2/log"
 
-	kit "gitlab.lainuoniao.cn/eden-quan/go-biz-kit"
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config"
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config/def"
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/message"
+	kit "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config/def"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/message"
 )
 
 type messageQueueImpl struct {

@@ -4,12 +4,12 @@ import (
 	"context"
 	"strings"
 
-	errorpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/error"
 	"github.com/go-kratos/kratos/v2/middleware"
 	"github.com/go-kratos/kratos/v2/transport"
+	errorpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/error"
 	"go.opentelemetry.io/otel/trace"
 
-	errorutil "gitlab.lainuoniao.cn/eden-quan/go-biz-kit/error"
+	errorutil "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/error"
 )
 
 type tracingServerError struct {

@@ -1,18 +1,18 @@
 package servers
 
 import (
-	middlewareutil "gitlab.lainuoniao.cn/eden-quan/go-biz-kit/middleware"
+	middlewareutil "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/middleware"
 	"time"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/transport/grpc"
 	grpc2 "google.golang.org/grpc"
 
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config/def"
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/injection"
-	setup2 "gitlab.lainuoniao.cn/eden-quan/go-biz-kit/setup"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config/def"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/injection"
+	setup2 "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/setup"
 
-	apppkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/app"
+	apppkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/app"
 )
 
 // NewGRPCServer 创建一个 gRPC 服务端

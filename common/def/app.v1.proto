@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package kit.default.configv1;
 
-option go_package = "gitlab.lainuoniao.cn/eden-quan/go-biz-kit/common/def;def";
+option go_package = "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/common/def;def";
 
 
 // App application

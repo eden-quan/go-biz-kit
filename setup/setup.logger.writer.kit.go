@@ -6,10 +6,10 @@ import (
 	"strings"
 	"sync"
 
-	logpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/log"
-	writerpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/writer"
+	logpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/log"
+	writerpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/writer"
 
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config/def"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config/def"
 )
 
 // getLoggerFileWriter 文件日志写手柄

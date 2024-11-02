@@ -3,15 +3,15 @@ package clientutil
 import (
 	"context"
 
-	authpkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/auth"
-	middlewarepkg "gitlab.lainuoniao.cn/eden-quan/go-kratos-pkg/middleware"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware"
 	"github.com/go-kratos/kratos/v2/middleware/metadata"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
 	"github.com/go-kratos/kratos/v2/transport"
+	authpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/auth"
+	middlewarepkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/middleware"
 
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/tracing"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/tracing"
 )
 
 func AuthorizationMiddleware() middleware.Middleware {

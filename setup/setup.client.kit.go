@@ -7,8 +7,8 @@ import (
 	"github.com/go-kratos/kratos/v2/transport/http"
 	"google.golang.org/grpc"
 
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/client"
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config/def"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/client"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config/def"
 )
 
 func NewGRPCClientFactory(logger log.Logger) clientutil.RegisterGRPCClientFactoryType {

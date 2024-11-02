@@ -1,7 +1,7 @@
 package def
 
 import (
-	"gitlab.lainuoniao.cn/eden-quan/go-biz-kit/config"
+	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config"
 )
 
 type Configuration struct {

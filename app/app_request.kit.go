@@ -9,7 +9,7 @@ import (
 	"github.com/go-kratos/kratos/v2/encoding"
 	"github.com/go-kratos/kratos/v2/transport/http"
 
-	errorv1 "gitlab.lainuoniao.cn/eden-quan/go-biz-kit/common/def"
+	errorv1 "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/common/def"
 )
 
 var (

@@ -2,7 +2,7 @@ package encrypt
 
 //
 ///*
-// #cgo CFLAGS: -I/Users/sinsay/project/work/lainuo/project/eden/go-biz-kit/encoding/encrypt
+// #cgo CFLAGS: -I/Users/sinsay/project/work/lainuo/project/eden/go-biz-kit.git/encoding/encrypt
 // #include "bcrypt_all.h"
 //*/
 //import "C"
