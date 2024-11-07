@@ -1,6 +1,7 @@
 package regex
 
 import (
+	"encoding/hex"
 	"math/rand"
 	"sync"
 	"time"
@@ -22,4 +23,12 @@ func RandomString(length int) string {
 		b[i] = letterBytes[R.Intn(len(letterBytes))]
 	}
 	return string(b)
+}
+
+func RandomHex(n int) (string, error) {
+	bytes := make([]byte, n)
+	if _, err := rand.Read(bytes); err != nil {
+		return "", err
+	}
+	return hex.EncodeToString(bytes), nil
 }

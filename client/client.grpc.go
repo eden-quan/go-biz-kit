@@ -2,6 +2,7 @@ package clientutil
 
 import (
 	"context"
+	"google.golang.org/grpc/connectivity"
 	"time"
 
 	"github.com/go-kratos/kratos/v2/log"
@@ -56,6 +57,14 @@ func (c *GrpcClientConn) connect() error {
 }
 
 func (c *GrpcClientConn) Invoke(ctx context.Context, method string, args, reply any, opts ...grpc.CallOption) error {
+
+	if c.ClientConn == nil {
+		c.Connect()
+	}
+
+	if c.ClientConn.GetState() == connectivity.Shutdown || c.ClientConn.GetState() == connectivity.TransientFailure {
+		c.Connect()
+	}
 	return c.ClientConn.Invoke(ctx, method, args, reply, opts...)
 }
 
