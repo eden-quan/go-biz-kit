@@ -94,8 +94,18 @@ func (r *RsaTool) DecryptPassword(password string) (string, error) {
 
 // EncryptPassword 对密码进行解密
 func (r *RsaTool) EncryptPassword(password string) (string, error) {
-	pwdEncrypted, err := r.EncryptRSA([]byte(password), r.PrivateKey)
+	pwdEncrypted, err := r.EncryptRSA([]byte(password), r.PublicKey)
 	return string(pwdEncrypted), err
+}
+
+func (r *RsaTool) EncryptAndEncodePassword(pwd string) (string, error) {
+	pwd, err := r.EncryptPassword(pwd)
+	if err != nil {
+		return "", err
+	}
+
+	decoded := base64.StdEncoding.EncodeToString([]byte(pwd))
+	return decoded, nil
 }
 
 // DecryptRSA 对数据进行解密操作
