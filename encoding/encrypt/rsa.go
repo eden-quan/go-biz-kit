@@ -11,25 +11,41 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+type ErrorBuilderFunc func(msg string) error
+
+func DefaultErrorBuilder(msg string) error {
+	return errors.New(msg)
+}
+
 type RsaTool struct {
-	log        *log.Helper
-	PrivateKey string
-	PublicKey  string
+	log                  *log.Helper
+	PrivateKey           string
+	PublicKey            string
+	ValidateErrorBuilder ErrorBuilderFunc
+	DecryptErrorBuilder  ErrorBuilderFunc
+	LengthErrorBuilder   ErrorBuilderFunc
 }
 
 func NewRsaTool(logger log.Logger, publicKey string, privateKey string) *RsaTool {
 	return &RsaTool{
-		log:        log.NewHelper(logger),
-		PrivateKey: privateKey,
-		PublicKey:  publicKey,
+		log:                  log.NewHelper(logger),
+		PrivateKey:           privateKey,
+		PublicKey:            publicKey,
+		ValidateErrorBuilder: DefaultErrorBuilder,
+		DecryptErrorBuilder:  DefaultErrorBuilder,
+		LengthErrorBuilder:   DefaultErrorBuilder,
 	}
+}
+
+func (r *RsaTool) SetErrorBuilder(decrypt ErrorBuilderFunc, validate ErrorBuilderFunc) {
+	r.DecryptErrorBuilder = decrypt
+	r.ValidateErrorBuilder = validate
 }
 
 // ValidateHash 校验 psw 是否与已经过 Hash 的密码 hashed 相等
 func (r *RsaTool) ValidateHash(psw string, hashed string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hashed), []byte(psw))
 	return err == nil
-	//return BcryptValidatePassword(psw, hashed)
 }
 
 func (r *RsaTool) GenerateHash(pwd string) (string, error) {
@@ -74,7 +90,7 @@ func (r *RsaTool) DecryptAndValidate(pswNeedDecrypt, hashedPsw string) error {
 		return nil
 	}
 
-	return errors.New("password error")
+	return r.ValidateErrorBuilder("password error")
 }
 
 // DecryptPassword 对密码进行解密，传递的密码已经经过了 Base64 Encode
@@ -85,10 +101,9 @@ func (r *RsaTool) DecryptPassword(password string) (string, error) {
 	passwordOutputStr := string(passwordOutput)
 
 	if len(passwordOutputStr) < 8 {
-		return "", errors.New("password too short")
+		return "", r.LengthErrorBuilder("password too short")
 	}
 
-	// todo: 加密
 	return passwordOutputStr, err
 }
 

@@ -38,6 +38,7 @@ func AuthorizationMiddleware() middleware.Middleware {
 // DefaultServerMiddlewares 中间件
 func DefaultServerMiddlewares() []middleware.Middleware {
 	return []middleware.Middleware{
+		HttpContextMiddleware(),
 		recovery.Recovery(recovery.WithHandler(middlewareutil.RecoveryHandler())),
 		metadata.Server(),
 		tracing.Server(),
@@ -50,6 +51,7 @@ func DefaultServerMiddlewares() []middleware.Middleware {
 
 func DefaultGrpcServerMiddlewares() []middleware.Middleware {
 	return []middleware.Middleware{
+		HttpContextMiddleware(),
 		recovery.Recovery(recovery.WithHandler(middlewareutil.RecoveryHandler())),
 		metadata.Server(),
 		tracing.Server(),

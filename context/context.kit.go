@@ -8,6 +8,8 @@ import (
 	headerpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/header"
 )
 
+const HttpContextKey = "_HTTP_CONTEXT_KEY_"
+
 // GetTraceID ...
 func GetTraceID(ctx context.Context) (string, bool) {
 	tr, ok := contextpkg.FromServerContext(ctx)
