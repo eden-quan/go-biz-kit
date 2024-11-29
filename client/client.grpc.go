@@ -36,7 +36,6 @@ func NewGrpcClientConn(server *def.Server, logger log.Logger, options ...kgrpc.C
 		timeOut = server.GetGrpc().GetTimeout().AsDuration()
 	}
 	opts = append(opts, kgrpc.WithTimeout(timeOut))
-
 	opts = append(opts, kgrpc.WithMiddleware(DefaultClientMiddlewares(logger)...))
 	opts = append(opts, options...)
 

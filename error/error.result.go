@@ -197,6 +197,13 @@ func matchAndUpdate(reply interface{}, err error, data *common.Result) (processe
 	processed = false
 	checkerOnce.Do(initChecker)
 
+	isNil := false
+
+	if reply == nil {
+		reply = &common.SimpleResult{}
+		isNil = true
+	}
+
 	value := reflect.ValueOf(reply)
 	if value.IsNil() {
 		// 尝试构建一个默认值，确认是否符合基础字段
@@ -219,6 +226,9 @@ func matchAndUpdate(reply interface{}, err error, data *common.Result) (processe
 	}
 
 	result = reply
+	if isNil {
+		processed = false
+	}
 	return
 }
 

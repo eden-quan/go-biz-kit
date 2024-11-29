@@ -43,7 +43,10 @@ func NewHTTPServer(
 
 	// 响应
 	opts = append(opts, http.RequestDecoder(apputil.RequestDecoder))
-	opts = append(opts, http.ErrorEncoder(apputil.ErrorEncoder))
+
+	// TODO: 根据项目需要选择合适的默认错误处理结果
+	//opts = append(opts, http.ErrorEncoder(apputil.ErrorEncoder))
+	opts = append(opts, http.ErrorEncoder(apputil.SimpleErrorEncoder))
 
 	var middlewareSlice = DefaultServerMiddlewares()
 	middleLogger, err := manager.LoggerMiddleware()
