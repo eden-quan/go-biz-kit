@@ -98,7 +98,7 @@ func (c *GrpcClientConn) Invoke(ctx context.Context, method string, args, reply 
 				c.helper.Errorf("grpc client calling %s is unimplemented", method)
 				return err
 			case codes.Unavailable:
-				c.helper.Errorf("grpc client calling %s with unavailable - retry %d times", method, tryTimes)
+				c.helper.Warnf("grpc client calling %s with unavailable - retry %d times", method, tryTimes)
 				break
 			default:
 				c.helper.Errorf("grpc client calling %s with unhandled status %d and message %s", method, st.Code(), st.Message())
@@ -111,6 +111,7 @@ func (c *GrpcClientConn) Invoke(ctx context.Context, method string, args, reply 
 		}
 	}
 
+	c.helper.Errorf("grpc client calling %s with unavailable - retry more than %d times", method, tryTimes)
 	return lastError
 }
 
