@@ -33,5 +33,6 @@ func Copy(desc interface{}, src interface{}) error {
 		Converters:    IdConverters,
 		IgnoreEmpty:   true,
 		CaseSensitive: false,
+		DeepCopy:      true,
 	})
 }
