@@ -7,9 +7,9 @@ import (
 	"github.com/go-kratos/kratos/v2/middleware/metadata"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
 	"github.com/go-kratos/kratos/v2/transport"
-	authpkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/auth"
 	middlewarepkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/middleware"
 
+	contextkit "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/context"
 	errorutil "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/error"
 	middlewareutil "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/middleware"
 	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/tracing"
@@ -23,11 +23,18 @@ func AuthorizationMiddleware() middleware.Middleware {
 				return handler(ctx, req)
 			}
 
+			// 默认 Token 处理
 			header := tr.RequestHeader()
-			token := header.Get(authpkg.AuthorizationKey)
+			token := header.Get(contextkit.AuthorizationKey)
 
 			if token != "" {
-				ctx = context.WithValue(ctx, authpkg.AuthorizationKey, token)
+				ctx = context.WithValue(ctx, contextkit.AuthorizationKey, token)
+			}
+
+			// 内部鉴权 Token 处理
+			innerToken := header.Get(contextkit.InnerAuthorizationKey)
+			if innerToken != "" {
+				ctx = context.WithValue(ctx, contextkit.InnerAuthorizationKey, innerToken)
 			}
 
 			return handler(ctx, req)
