@@ -25,10 +25,19 @@ func RandomString(length int) string {
 	return string(b)
 }
 
+// RandomHex 生成随机字符串
+//
+// Deprecated: 该接口后续将废弃!!
 func RandomHex(n int) (string, error) {
 	bytes := make([]byte, n)
 	if _, err := rand.Read(bytes); err != nil {
 		return "", err
 	}
 	return hex.EncodeToString(bytes), nil
+}
+
+func GenerateHex(n int) string {
+	bytes := make([]byte, n)
+	_, _ = rand.Read(bytes)
+	return hex.EncodeToString(bytes)
 }
