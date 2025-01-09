@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/go-kratos/kratos/contrib/config/etcd/v2"
@@ -35,6 +36,24 @@ func (k *KratosConfWrapper) LoadWithPath(object interface{}, path string) error 
 	return val.Scan(object)
 }
 
+const (
+	ENV_DEV    = "dev"
+	ENV_TEST   = "test"
+	ENV_HOTFIX = "hotfix"
+	ENV_PRE    = "pre"
+	ENV_SIT    = "sit"
+	ENV_PROD   = "prod"
+)
+
+var envMap = map[string]string{
+	ENV_DEV:    "/dev/",
+	ENV_TEST:   "/test/",
+	ENV_HOTFIX: "/hotfix/",
+	ENV_PRE:    "/pre/",
+	ENV_SIT:    "/sit/",
+	ENV_PROD:   "/prod/",
+}
+
 func NewConfig(configure *LocalConfigure) (config.Config, ConfigureWatcherRepo, error) {
 	timeOut, err := time.ParseDuration(configure.ConfigCenter.Timeout)
 	if err != nil {
@@ -49,7 +68,13 @@ func NewConfig(configure *LocalConfigure) (config.Config, ConfigureWatcherRepo, 
 	if err != nil {
 		panic(fmt.Sprint("connect to etcd failed with error", err))
 	}
-	etcdSource, err := etcd.New(client, etcd.WithPath("/"), etcd.WithPrefix(true))
+	var path etcd.Option
+	if configure.APP.Env == ENV_PROD {
+		path = etcd.WithPath("/")
+	} else {
+		path = etcd.WithPath("/" + configure.APP.Env)
+	}
+	etcdSource, err := etcd.New(client, path, etcd.WithPrefix(true))
 	if err != nil {
 		panic(fmt.Sprint("new etcd source failed with error", err))
 	}
@@ -81,6 +106,13 @@ func confDecoder(src *config.KeyValue, target map[string]interface{}) error {
 	if err != nil {
 		return err
 	}
-	target[src.Key] = container
+	var key = src.Key
+	for _, v := range envMap {
+		if strings.HasPrefix(key, v) {
+			key = strings.TrimPrefix(key, v[:len(v)-1])
+			break
+		}
+	}
+	target[key] = container
 	return nil
 }
