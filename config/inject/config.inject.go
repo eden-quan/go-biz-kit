@@ -22,7 +22,8 @@ func Inject() {
 func InjectIns(inj *injection.Injector) {
 	inj.InjectMany(
 		config.NewConfigWithFiles,
-		config.NewConfigWatcher,
+		//config.NewConfigWatcher,
+		config.NewConfig,
 		//def.NewConfiguration,
 	)
 }
