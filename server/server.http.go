@@ -1,8 +1,9 @@
 package servers
 
 import (
-	middlewareutil "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/middleware"
 	"time"
+
+	middlewareutil "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/middleware"
 
 	"github.com/go-kratos/kratos/v2/transport/http"
 
@@ -58,7 +59,7 @@ func NewHTTPServer(
 	// 日志输出, SQL Action 处理器，确保在真正的业务逻辑执行之前触发
 	middlewareSlice = append(middlewareSlice,
 		apppkg.ServerLog(middleLogger),
-		middlewareutil.SQLActionMiddleware(actionManage),
+		middlewareutil.Validator(),
 	)
 
 	if customMiddlewares != nil && customMiddlewares.Middlewares != nil {

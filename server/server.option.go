@@ -52,7 +52,6 @@ func DefaultServerMiddlewares() []middleware.Middleware {
 		errorutil.ErrorResultMiddleware(),
 		middlewarepkg.RequestAndResponseHeader(),
 		AuthorizationMiddleware(),
-		middlewareutil.Validator(),
 	}
 }
 
@@ -63,7 +62,6 @@ func DefaultGrpcServerMiddlewares() []middleware.Middleware {
 		metadata.Server(),
 		tracing.Server(),
 		errorutil.ErrorResultMiddleware(),
-		middlewareutil.Validator(),
 		middlewarepkg.RequestAndResponseHeader(),
 		AuthorizationMiddleware(),
 	}
