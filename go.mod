@@ -1,6 +1,8 @@
 module gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git
 
-go 1.22
+go 1.22.0
+
+toolchain go1.22.7
 
 require (
 	github.com/bwmarrin/snowflake v0.3.0
@@ -15,8 +17,8 @@ require (
 	github.com/redis/go-redis/v9 v9.3.1
 	github.com/rs/xid v1.5.0
 	github.com/signalfx/splunk-otel-go/instrumentation/github.com/jmoiron/sqlx/splunksqlx v1.11.0
-	github.com/stretchr/testify v1.8.4
-	gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git v0.0.4
+	github.com/stretchr/testify v1.9.0
+	gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git v0.0.5
 	go.etcd.io/etcd/api/v3 v3.5.11
 	go.etcd.io/etcd/client/v3 v3.5.11
 	go.mongodb.org/mongo-driver v1.17.1
@@ -53,7 +55,7 @@ require (
 	github.com/gorilla/handlers v1.5.1 // indirect
 	github.com/gorilla/mux v1.8.1 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.16.0 // indirect
-	github.com/klauspost/compress v1.16.7 // indirect
+	github.com/klauspost/compress v1.17.9 // indirect
 	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible // indirect
 	github.com/lestrrat-go/strftime v1.0.6 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
