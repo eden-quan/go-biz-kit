@@ -60,12 +60,7 @@ func Server() middleware.Middleware {
 					}
 
 					// modify error impl for formatting tracing log
-					if info, e := errorpkg.NewErrorMetaInfo(err); e == nil {
-						tracer.End(ctx, span, reply, &tracingServerError{info: info})
-						//err = info.ToClientError()
-					} else {
-						tracer.End(ctx, span, reply, err)
-					}
+					tracer.End(ctx, span, reply, err)
 
 					if ok {
 						err = nil
