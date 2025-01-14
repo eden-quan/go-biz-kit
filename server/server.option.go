@@ -10,7 +10,6 @@ import (
 	middlewarepkg "gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git/middleware"
 
 	contextkit "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/context"
-	errorutil "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/error"
 	middlewareutil "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/middleware"
 	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/tracing"
 )
@@ -49,7 +48,6 @@ func DefaultServerMiddlewares() []middleware.Middleware {
 		recovery.Recovery(recovery.WithHandler(middlewareutil.RecoveryHandler())),
 		metadata.Server(),
 		tracing.Server(),
-		errorutil.ErrorResultMiddleware(),
 		middlewarepkg.RequestAndResponseHeader(),
 		AuthorizationMiddleware(),
 	}
@@ -61,7 +59,6 @@ func DefaultGrpcServerMiddlewares() []middleware.Middleware {
 		recovery.Recovery(recovery.WithHandler(middlewareutil.RecoveryHandler())),
 		metadata.Server(),
 		tracing.Server(),
-		errorutil.ErrorResultMiddleware(),
 		middlewarepkg.RequestAndResponseHeader(),
 		AuthorizationMiddleware(),
 	}
