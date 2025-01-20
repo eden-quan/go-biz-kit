@@ -42,6 +42,7 @@ const (
 	ENV_HOTFIX = "hotfix"
 	ENV_PRE    = "pre"
 	ENV_SIT    = "sit"
+	ENV_UAT    = "uat"
 	ENV_PROD   = "prod"
 )
 
@@ -51,6 +52,7 @@ var envMap = map[string]string{
 	ENV_HOTFIX: "/hotfix/",
 	ENV_PRE:    "/pre/",
 	ENV_SIT:    "/sit/",
+	ENV_UAT:    "/uat/",
 	ENV_PROD:   "/prod/",
 }
 
