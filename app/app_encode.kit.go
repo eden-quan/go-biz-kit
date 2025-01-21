@@ -121,11 +121,20 @@ func ErrorEncoder(w stdhttp.ResponseWriter, r *stdhttp.Request, err error) {
 // 简易版通用错误结果，因为错误信息已在前置中间件处理完成，因此此处只返回简易结果，并将 TraceId 记录到 Header
 func SimpleErrorEncoder(w stdhttp.ResponseWriter, r *stdhttp.Request, err error) {
 	se := errors.FromError(err)
-	hcode := se.GetCode()
-	if code := se.Metadata["BizCode"]; code != "" {
-		bizCode, _ := strconv.Atoi(code)
-		se.Code = int32(bizCode)
+	// code为http状态码
+	te, hcode := err, se.GetCode()
+	// 从错误链中获取业务码
+	for te != nil {
+		err := errors.FromError(te)
+		if code := err.Metadata["BizCode"]; code != "" {
+			bizCode, _ := strconv.Atoi(code)
+			se.Code = int32(bizCode)
+			break
+		}
+		te = err.Unwrap()
 	}
+	// 移除元数据，避免泄露
+	se.Metadata = map[string]string{}
 	codec, _ := http.CodecForRequest(r, "Accept")
 	body, err := codec.Marshal(se)
 	if err != nil {
