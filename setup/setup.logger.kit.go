@@ -175,58 +175,6 @@ func (m *LoggerManager) loadingLoggerWithCallerSkip(skip int) (logger log.Logger
 		// 覆盖 stdLogger
 		loggers = append(loggers, stdLogger)
 	}
-
-	// 日志 输出到文件
-	loggerConfigForFile := conf.GetFile()
-	if loggerConfigForFile.GetEnable() {
-		// file logger
-		fileLoggerConfig := &logpkg.ConfigFile{
-			Level:      logpkg.ParseLevel(loggerConfigForFile.GetLevel()),
-			CallerSkip: skip,
-
-			Dir:      loggerConfigForFile.Dir,
-			Filename: loggerConfigForFile.Filename,
-
-			RotateTime: loggerConfigForFile.RotateTime.AsDuration(),
-			RotateSize: loggerConfigForFile.RotateSize,
-
-			StorageCounter: uint(loggerConfigForFile.StorageCounter),
-			StorageAge:     loggerConfigForFile.StorageAge.AsDuration(),
-		}
-		writer, err := m.getLoggerFileWriter()
-		if err != nil {
-			return logger, err
-		}
-		fileLogger, err := logpkg.NewFileLogger(
-			fileLoggerConfig,
-			logpkg.WithWriter(writer),
-		)
-
-		loggers = append(loggers, fileLogger)
-	}
-
-	// 日志 输出到Graylog
-	loggerConfigForGraylog := conf.GetGraylog()
-	if loggerConfigForGraylog.GetEnable() {
-		writer, err := m.getLoggerGraylogWriter()
-		if err != nil {
-			return logger, err
-		}
-		graylogLoggerConfig := &logpkg.ConfigGraylog{
-			Level:         logpkg.ParseLevel(loggerConfigForGraylog.GetLevel()),
-			CallerSkip:    skip,
-			GraylogConfig: *m.genGraylogConfig(loggerConfigForGraylog),
-		}
-		graylogLogger, err := logpkg.NewGraylogLogger(
-			graylogLoggerConfig,
-			logpkg.WithWriter(writer),
-		)
-		if err != nil {
-			return logger, err
-		}
-		loggers = append(loggers, graylogLogger)
-	}
-
 	// 日志工具
 	if len(loggers) == 0 {
 		return logger, err

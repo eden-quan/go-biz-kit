@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-kratos/kratos/contrib/config/etcd/v2"
 	"github.com/go-kratos/kratos/v2/config"
+	"github.com/go-kratos/kratos/v2/config/file"
 	"github.com/go-kratos/kratos/v2/encoding"
 	etcdclient "go.etcd.io/etcd/client/v3"
 )
@@ -80,10 +81,16 @@ func NewConfig(configure *LocalConfigure) (config.Config, ConfigureWatcherRepo, 
 	if err != nil {
 		panic(fmt.Sprint("new etcd source failed with error", err))
 	}
-	conf := config.New(
-		config.WithSource(etcdSource),
-		config.WithDecoder(confDecoder),
-	)
+	var source config.Option
+	if configure.ConfigCenter.LocalFile != "" {
+		source = config.WithSource(
+			etcdSource,
+			file.NewSource(configure.ConfigCenter.LocalFile),
+		)
+	} else {
+		source = config.WithSource(etcdSource)
+	}
+	conf := config.New(source, config.WithDecoder(confDecoder))
 	if err := conf.Load(); err != nil {
 		panic(fmt.Sprint("load config failed with error", err))
 	}
