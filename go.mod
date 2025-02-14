@@ -18,7 +18,7 @@ require (
 	github.com/rs/xid v1.5.0
 	github.com/signalfx/splunk-otel-go/instrumentation/github.com/jmoiron/sqlx/splunksqlx v1.11.0
 	github.com/stretchr/testify v1.9.0
-	gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git v0.0.5
+	gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git v0.0.6
 	go.etcd.io/etcd/api/v3 v3.5.11
 	go.etcd.io/etcd/client/v3 v3.5.11
 	go.mongodb.org/mongo-driver v1.17.1

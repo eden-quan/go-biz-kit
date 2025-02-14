@@ -161,8 +161,8 @@ github.com/youmark/pkcs8 v0.0.0-20240726163527-a2c0da244d78/go.mod h1:aL8wCCfTfS
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
-gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git v0.0.5 h1:LfMNhK0PZqU1no5L2b2O0ec0nPdW0vXgIE9a9TG5iGM=
-gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git v0.0.5/go.mod h1:cjO1BmJ4JJVnpZZdi6TcKzes6bSazkLQ008vovt+2bE=
+gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git v0.0.6 h1:OfVowngXYjvsZufIwa3VPRJ/Mraa2nFcd7gp0NuBcKI=
+gitlab.lainuoniao.cn/rhinobird/backend/go-kratos-pkg.git v0.0.6/go.mod h1:cjO1BmJ4JJVnpZZdi6TcKzes6bSazkLQ008vovt+2bE=
 go.etcd.io/etcd/api/v3 v3.5.11 h1:B54KwXbWDHyD3XYAwprxNzTe7vlhR69LuBgZnMVvS7E=
 go.etcd.io/etcd/api/v3 v3.5.11/go.mod h1:Ot+o0SWSyT6uHhA56al1oCED0JImsRiU9Dc26+C2a+4=
 go.etcd.io/etcd/client/pkg/v3 v3.5.11 h1:bT2xVspdiCj2910T0V+/KHcVKjkUrCZVtk8J2JF2z1A=
