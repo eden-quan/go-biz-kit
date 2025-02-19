@@ -6,6 +6,7 @@ import (
 	middlewareutil "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/middleware"
 
 	"github.com/go-kratos/kratos/v2/transport/http"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 
 	apputil "gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/app"
 	"gitlab.lainuoniao.cn/rhinobird/backend/go-biz-kit.git/config/def"
@@ -76,6 +77,6 @@ func NewHTTPServer(
 
 	// 服务
 	srv := http.NewServer(opts...)
-
+	srv.Handle("/api/v1/prometheus/metrics", promhttp.Handler())
 	return srv, err
 }

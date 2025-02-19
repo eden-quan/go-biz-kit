@@ -45,6 +45,7 @@ func AuthorizationMiddleware() middleware.Middleware {
 func DefaultServerMiddlewares() []middleware.Middleware {
 	return []middleware.Middleware{
 		HttpContextMiddleware(),
+		MetricsMiddleware(),
 		recovery.Recovery(recovery.WithHandler(middlewareutil.RecoveryHandler())),
 		metadata.Server(),
 		tracing.Server(),
