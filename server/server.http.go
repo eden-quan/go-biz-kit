@@ -77,6 +77,6 @@ func NewHTTPServer(
 
 	// 服务
 	srv := http.NewServer(opts...)
-	srv.Handle("/api/v1/prometheus/metrics", promhttp.Handler())
+	srv.Handle("/metrics", promhttp.Handler())
 	return srv, err
 }
