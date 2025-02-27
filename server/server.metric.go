@@ -16,9 +16,9 @@ var (
 	_metricSeconds = prometheus.NewHistogramVec(prometheus.HistogramOpts{
 		Namespace: "server",
 		Subsystem: "requests",
-		Name:      "duration_sec",
-		Help:      "server requests duration(sec).",
-		Buckets:   []float64{0.005, 0.01, 0.025, 0.05, 0.1, 0.250, 0.5, 1},
+		Name:      "duration",
+		Help:      "server requests duration(milliseconds).",
+		Buckets:   []float64{5, 10, 25, 50, 100, 250, 500, 1000},
 	}, []string{"component", "operation"})
 
 	_metricRequests = prometheus.NewCounterVec(prometheus.CounterOpts{
@@ -54,7 +54,7 @@ func MetricsMiddleware() middleware.Middleware {
 				code = int(se.Code)
 			}
 			_metricRequests.WithLabelValues(component, operation, strconv.Itoa(code), "").Inc()
-			_metricSeconds.WithLabelValues(component, operation).Observe(time.Since(startTime).Seconds())
+			_metricSeconds.WithLabelValues(component, operation).Observe(float64(time.Since(startTime).Milliseconds()))
 			return reply, err
 		}
 	}
